@@ -5,5 +5,8 @@
 # @Author    :Amundsen Severus Rubeus Bjaaland
 
 
-if __name__ == "__main__":
-    run_code = 0
+from ChatRecordAnalyzer.MHTFileAnalyzer import analyze_mht_file
+
+
+File = analyze_mht_file("D:\Code\QQChatRecordAnalyze\ChatRecord\疏儿(1369439362).mht")
+a = 0
