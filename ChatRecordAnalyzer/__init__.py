@@ -5,5 +5,5 @@
 # @Author    :Amundsen Severus Rubeus Bjaaland
 
 
-if __name__ == "__main__":
-    pass
+from .FileAnalyzers import MhtFile
+from .FileAnalyzers import TxtFile
