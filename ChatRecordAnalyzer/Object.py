@@ -85,7 +85,7 @@ class MessageList(object):
 		self.message_dict_people: Dict[str, List[Message]] = defaultdict(list)
 	
 	def __str__(self):
-		return f"<MessageList number={len(self.message_list)}>"
+		return f"<MessageList number={len(self.message_list)} people={'、'.join(self.all_sender)}>"
 	
 	def __repr__(self):
 		return str(self)
