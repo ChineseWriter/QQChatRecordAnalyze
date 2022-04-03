@@ -55,6 +55,14 @@ class Content(object):
 	
 	def __repr__(self):
 		return str(self)
+	
+	def __eq__(self, other: "Content"):
+		if other.content_type == self.content_type and other.data == self.data:
+			return True
+		return False
+	
+	def __hash__(self):
+		return hash((self.content_type, self.data))
 
 
 class Message(object):
@@ -76,6 +84,21 @@ class Message(object):
 	def append_content(self, content: Content) -> bool:
 		self.content.append(content)
 		return True
+	
+	def __eq__(self, other: "Message"):
+		if (other.message_time == self.message_time) and \
+				(other.sender == self.sender) and \
+				(other.sender_id == self.sender_id) and \
+				(other.content == self.content):
+			return True
+		return False
+	
+	def __hash__(self):
+		attr = (
+			self.message_time, self.sender, self.sender_id,
+			tuple([tuple([one_content.content_type, one_content.data]) for one_content in self.content])
+		)
+		return hash(attr)
 
 
 class MessageList(object):
@@ -85,10 +108,21 @@ class MessageList(object):
 		self.message_dict_people: Dict[str, List[Message]] = defaultdict(list)
 	
 	def __str__(self):
-		return f"<MessageList number={len(self.message_list)} people={'、'.join(self.all_sender)}>"
+		if self.message_list:
+			return f"<MessageList number={len(self.message_list)} people={'、'.join(self.all_sender)}>"
+		else:
+			return "<MessageList Empty>"
 	
 	def __repr__(self):
 		return str(self)
+	
+	def __add__(self, other: "MessageList"):
+		new_message_list = set(self.message_list + other.message_list)
+		new_message_list = self.sort_message(list(new_message_list))
+		new_message_list_object = MessageList()
+		for one_message in new_message_list:
+			new_message_list_object.append_message(one_message)
+		return new_message_list_object
 	
 	@classmethod
 	def sort_message(cls, message_list: List[Message]):

@@ -11,9 +11,12 @@ from ChatRecordAnalyzer import MhtFile, TxtFile
 
 
 File1 = MhtFile("E:\YHL\Code\QQChatRecordAnalyzer\Data\疏儿(1369439362).mht")
+File2 = MhtFile("E:\YHL\Code\QQChatRecordAnalyzer\Data\\test.mht")
 MessageList1 = File1.get_message_list()
-MessageList1.merge(["Ephemeral", "章可晶(可可)(Cherley)", "章可晶(可可)(Sherley)", "半夏生", "疏儿"], "疏儿")
-MessageList1.delete(['系统消息(10000)', ""])
+MessageList2 = File2.get_message_list()
+MessageList3 = MessageList1 + MessageList2
+MessageList3.merge(["Ephemeral", "章可晶(可可)(Cherley)", "章可晶(可可)(Sherley)", "半夏生", "疏儿"], "疏儿")
+MessageList3.delete(['系统消息(10000)', ""])
 Info1 = MessageList1.self_check()
 # File2 = TxtFile("E:\YHL\Code\QQChatRecordAnalyzer\Data\疏儿(1369439362).txt")
 # MessageList2 = File2.get_message_list()
