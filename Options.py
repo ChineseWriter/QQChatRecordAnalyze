@@ -10,7 +10,7 @@ import time
 import jieba
 import wordcloud
 
-with open("./stopwords.txt", "r", encoding="UTF-8") as File:
+with open("ChatRecordAnalyzer/stopwords.txt", "r", encoding="UTF-8") as File:
     STOPWORDS = File.read().split("\n")
 
 STOPWORDS.append("图片")
